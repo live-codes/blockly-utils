@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 Blockly.Blocks.dom_element_by_id = {
-  init () {
+  init() {
     this.appendValueInput('id', 'text').appendField('get by ID');
     this.setInputsInline(false);
     this.setOutput(true, 'HTMLElement');
@@ -11,7 +11,7 @@ Blockly.Blocks.dom_element_by_id = {
 };
 
 Blockly.Blocks.dom_element_selector = {
-  init () {
+  init() {
     this.appendValueInput('selector', 'text').appendField('match selector');
     this.setInputsInline(false);
     this.setOutput(true, 'HTMLElement');
@@ -21,7 +21,7 @@ Blockly.Blocks.dom_element_selector = {
 };
 
 Blockly.Blocks.dom_element_selector_to_list = {
-  init () {
+  init() {
     this.appendValueInput('selector', 'text').appendField('create list from selector');
     this.setInputsInline(false);
     this.setOutput(true, 'Array');
@@ -31,7 +31,7 @@ Blockly.Blocks.dom_element_selector_to_list = {
 };
 
 Blockly.Blocks.dom_create_element = {
-  init () {
+  init() {
     this.appendValueInput('tag', 'text').appendField('create element');
     this.setInputsInline(false);
     this.setOutput(true, 'HTMLElement');
@@ -41,7 +41,7 @@ Blockly.Blocks.dom_create_element = {
 };
 
 Blockly.Blocks.dom_tags = {
-  init () {
+  init() {
     const tagsList = new Blockly.FieldDropdown(
       [
         'br',
@@ -116,7 +116,7 @@ Blockly.Blocks.dom_tags = {
 };
 
 Blockly.Blocks.dom_element_properties = {
-  init () {
+  init() {
     const propertiesList = new Blockly.FieldDropdown(
       [
         'className',
@@ -142,7 +142,7 @@ Blockly.Blocks.dom_element_properties = {
 };
 
 Blockly.Blocks.dom_element_methods = {
-  init () {
+  init() {
     const methodsList = new Blockly.FieldDropdown(
       [
         'appendChild',
@@ -169,7 +169,7 @@ Blockly.Blocks.dom_element_methods = {
 };
 
 Blockly.Blocks.dom_events = {
-  init () {
+  init() {
     const eventList = new Blockly.FieldDropdown(
       [
         'blur',
@@ -205,7 +205,7 @@ Blockly.Blocks.dom_events = {
 };
 
 Blockly.Blocks.dom_get_property = {
-  init () {
+  init() {
     this.appendValueInput('element').setCheck('HTMLElement').appendField('get element');
     this.appendValueInput('property', 'text').appendField('property');
     this.setInputsInline(false);
@@ -216,7 +216,7 @@ Blockly.Blocks.dom_get_property = {
 };
 
 Blockly.Blocks.dom_set_property = {
-  init () {
+  init() {
     this.appendValueInput('element').setCheck('HTMLElement').appendField('set element');
     this.appendValueInput('property', 'text').appendField('property');
     this.appendValueInput('value').setCheck(null).appendField('to');
@@ -229,7 +229,7 @@ Blockly.Blocks.dom_set_property = {
 };
 
 Blockly.Blocks.dom_handle_event = {
-  init () {
+  init() {
     this.appendValueInput('element').setCheck('HTMLElement').appendField('on element');
     this.appendValueInput('event', 'text').appendField('event');
     this.appendStatementInput('event_handler').setCheck(null).appendField('do');
@@ -241,7 +241,7 @@ Blockly.Blocks.dom_handle_event = {
 };
 
 Blockly.Blocks.dom_call_method = {
-  init () {
+  init() {
     this.appendValueInput('element').setCheck('HTMLElement').appendField('call element');
     this.appendValueInput('method', 'text').appendField('method');
     this.appendValueInput('args').appendField('with');
@@ -255,7 +255,7 @@ Blockly.Blocks.dom_call_method = {
 
 Blockly.Blocks.dom_method_args = {
   ...Blockly.Blocks.lists_create_with,
-  updateShape_ () {
+  updateShape_() {
     if (this.itemCount_ && this.getInput('EMPTY')) {
       this.removeInput('EMPTY');
     } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
@@ -276,13 +276,13 @@ Blockly.Blocks.dom_method_args = {
   },
 };
 
-Blockly.JavaScript.dom_element_by_id = function (block) {
+Blockly.JavaScript.forBlock.dom_element_by_id = function (block) {
   const text_id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_NONE);
   const code = `document.getElementById(${text_id})`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_element_selector = function (block) {
+Blockly.JavaScript.forBlock.dom_element_selector = function (block) {
   const text_selector = Blockly.JavaScript.valueToCode(
     block,
     'selector',
@@ -292,7 +292,7 @@ Blockly.JavaScript.dom_element_selector = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_element_selector_to_list = function (block) {
+Blockly.JavaScript.forBlock.dom_element_selector_to_list = function (block) {
   const text_selector = Blockly.JavaScript.valueToCode(
     block,
     'selector',
@@ -302,31 +302,31 @@ Blockly.JavaScript.dom_element_selector_to_list = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_tags = function (block) {
+Blockly.JavaScript.forBlock.dom_tags = function (block) {
   const dropdown_tag = block.getFieldValue('tag');
   const code = `'${dropdown_tag}'`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_element_properties = function (block) {
+Blockly.JavaScript.forBlock.dom_element_properties = function (block) {
   const dropdown_property = block.getFieldValue('property');
   const code = `'${dropdown_property}'`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_element_methods = function (block) {
+Blockly.JavaScript.forBlock.dom_element_methods = function (block) {
   const dropdown_method = block.getFieldValue('method');
   const code = `'${dropdown_method}'`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_events = function (block) {
+Blockly.JavaScript.forBlock.dom_events = function (block) {
   const dropdown_event = block.getFieldValue('event');
   const code = `'${dropdown_event}'`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_get_property = function (block) {
+Blockly.JavaScript.forBlock.dom_get_property = function (block) {
   const value_element = Blockly.JavaScript.valueToCode(
     block,
     'element',
@@ -341,7 +341,7 @@ Blockly.JavaScript.dom_get_property = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_set_property = function (block) {
+Blockly.JavaScript.forBlock.dom_set_property = function (block) {
   const value_element = Blockly.JavaScript.valueToCode(
     block,
     'element',
@@ -357,7 +357,7 @@ Blockly.JavaScript.dom_set_property = function (block) {
   return code;
 };
 
-Blockly.JavaScript.dom_handle_event = function (block) {
+Blockly.JavaScript.forBlock.dom_handle_event = function (block) {
   const value_element = Blockly.JavaScript.valueToCode(
     block,
     'element',
@@ -376,7 +376,7 @@ ${statements_event_handler}});
   return code;
 };
 
-Blockly.JavaScript.dom_call_method = function (block) {
+Blockly.JavaScript.forBlock.dom_call_method = function (block) {
   const value_element = Blockly.JavaScript.valueToCode(
     block,
     'element',
@@ -402,10 +402,10 @@ Blockly.JavaScript.dom_call_method = function (block) {
   return code;
 };
 
-Blockly.JavaScript.dom_create_element = function (block) {
+Blockly.JavaScript.forBlock.dom_create_element = function (block) {
   const value_tag = Blockly.JavaScript.valueToCode(block, 'tag', Blockly.JavaScript.ORDER_NONE);
   const code = `document.createElement(${value_tag})`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript.dom_method_args = Blockly.JavaScript.lists_create_with;
+Blockly.JavaScript.forBlock.dom_method_args = Blockly.JavaScript.forBlock.lists_create_with;
